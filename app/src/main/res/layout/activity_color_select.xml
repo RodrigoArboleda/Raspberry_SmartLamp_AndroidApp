@@ -36,14 +36,14 @@
 
     <Button
         android:id="@+id/ColorPreViewButton"
+        style="@style/Widget.AppCompat.Button"
         android:layout_width="85dp"
         android:layout_height="85dp"
-        android:layout_marginTop="44dp"
         android:background="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/sendMsg"
-        app:layout_constraintHorizontal_bias="0.532"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.125"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/colorPicker"
-        app:layout_constraintVertical_bias="0.133" />
+        app:layout_constraintVertical_bias="0.446" />
 </androidx.constraintlayout.widget.ConstraintLayout>
