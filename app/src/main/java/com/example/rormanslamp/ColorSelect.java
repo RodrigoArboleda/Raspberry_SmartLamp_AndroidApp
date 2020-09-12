@@ -3,6 +3,7 @@ package com.example.rormanslamp;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
@@ -41,7 +42,7 @@ public class ColorSelect extends AppCompatActivity {
         }
 
         final Button sendButton = findViewById(R.id.sendMsg);
-
+        final Button colorPreviewButton = findViewById(R.id.ColorPreViewButton);
         final ColorPickerView colorPickerView = findViewById(R.id.colorPicker);
 
         if(bluetoothThread != null && bluetoothThread.getConnect()){
@@ -60,7 +61,11 @@ public class ColorSelect extends AppCompatActivity {
             });
         }
 
-        colorPickerView.subscribe((color, fromUser, shouldPropagate) -> color_text = colorHex(color));
+        colorPickerView.subscribe((color, fromUser, shouldPropagate) -> {
+            color_text = colorHex(color);
+            colorPreviewButton.setBackground(Drawable.createFromPath(color_text));
+        });
+
         colorPickerView.setInitialColor(INITIAL_COLOR);
     }
 
