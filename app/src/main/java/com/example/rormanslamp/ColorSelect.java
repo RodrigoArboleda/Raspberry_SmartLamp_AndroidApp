@@ -33,6 +33,7 @@ public class ColorSelect extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_color_select);
 
+        //try connect to lamp
         try {
             bluetoothThread = new ThreadBluetooth(MAC_Bluetooth, bluetoothAdapter);
         }catch (Exception erro){
@@ -44,6 +45,7 @@ public class ColorSelect extends AppCompatActivity {
         final Button colorPreviewButton = findViewById(R.id.ColorPreViewButton);
         final ColorPickerView colorPickerView = findViewById(R.id.colorPicker);
 
+        //send message to lamp
         if(bluetoothThread != null && bluetoothThread.getConnect()){
             sendButton.setOnClickListener(v -> {
                 try {
@@ -60,8 +62,11 @@ public class ColorSelect extends AppCompatActivity {
             });
         }
 
+        //show color selector
         colorPickerView.subscribe((color, fromUser, shouldPropagate) -> {
+            //get color
             color_text = colorHex(color);
+            //set color preview
             try {
                 colorPreviewButton.setBackgroundColor(Color.parseColor("#"+color_text.substring(2,10)));
             }
@@ -73,6 +78,9 @@ public class ColorSelect extends AppCompatActivity {
         colorPickerView.setInitialColor(INITIAL_COLOR);
     }
 
+    /*
+    It disconnects from the lamp and finish activity
+    */
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -86,6 +94,7 @@ public class ColorSelect extends AppCompatActivity {
         }
     }
 
+    //Convert color to HexCode
     private String colorHex(int color) {
         int a = Color.alpha(color);
         int r = Color.red(color);

@@ -20,15 +20,12 @@ public class ThreadBluetooth extends Thread{
         UUID uuid = UUID.fromString("94f39d29-7d6d-437d-973b-fba39e49d4ee");
 
         BluetoothDevice bluetoothDevice = bluetoothAdapter.getRemoteDevice(MAC_Bluetooth);
-
         socket = bluetoothDevice.createRfcommSocketToServiceRecord(uuid);
 
         socket.connect();
-
         connect = true;
 
         tmpOut = socket.getOutputStream();
-
         mmOutStream = tmpOut;
 
     }
